@@ -1,0 +1,7 @@
+com/logintest/LoginService.class
+com/logintest/LoginService$LoginResult.class
+com/logintest/LoginAPI.class
+com/logintest/LoginAPI$1.class
+com/logintest/DatabaseHelper.class
+com/logintest/TestDatabaseConnection.class
+com/logintest/LoginTest.class

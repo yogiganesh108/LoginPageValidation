@@ -1,0 +1,22 @@
+# Database Configuration
+# Copy this file and update with your actual MySQL credentials
+
+# MySQL Connection Settings
+db.url=jdbc:mysql://localhost:3306/
+db.schema=your_schema_name
+db.username=root
+db.password=
+
+# API Server Settings
+api.port=8080
+api.cors.enabled=true
+
+# Test Data
+test.email=test@example.com
+test.password=Password123!
+
+# Instructions:
+# 1. Replace 'your_schema_name' with your actual MySQL database name
+# 2. Update 'db.username' with your MySQL username
+# 3. Update 'db.password' with your MySQL password
+# 4. Save this file and update DatabaseHelper.java to read from this file (optional enhancement)

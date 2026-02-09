@@ -1,0 +1,5 @@
+
+/* Simple Tailwind CDN simulation for local running without full build chain setup in text */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
