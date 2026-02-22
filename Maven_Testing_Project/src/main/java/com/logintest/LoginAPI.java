@@ -141,7 +141,7 @@ public class LoginAPI {
             if (registered) {
                 res.status(201);
                 response.put("success", true);
-                response.put("message", "User registered successfully");
+                response.put("message", "Registration Successful");
             } else {
                 res.status(500);
                 response.put("success", false);

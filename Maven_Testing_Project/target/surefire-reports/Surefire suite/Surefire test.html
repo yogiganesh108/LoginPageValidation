@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Surefire test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>7/0/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>16/0/0</td>
 </tr><tr>
-<td>Started on:</td><td>Mon Feb 09 23:11:56 IST 2026</td>
+<td>Started on:</td><td>Sun Feb 22 04:04:39 IST 2026</td>
 </tr>
-<tr><td>Total time:</td><td>9 seconds (9974 ms)</td>
+<tr><td>Total time:</td><td>33 seconds (33144 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,40 +76,85 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='com.logintest.LoginTest.testInvalidLogin()'><b>testInvalidLogin</b><br>Test class: com.logintest.LoginTest<br>Test method: Test login with invalid credentials</td>
+<td title='com.logintest.LoginTest.testCorrectEmailWrongPassword()'><b>testCorrectEmailWrongPassword</b><br>Test class: com.logintest.LoginTest</td>
 <td></td>
-<td>0</td>
-<td>com.logintest.LoginTest@65d6b83b</td></tr>
+<td>1</td>
+<td>com.logintest.LoginTest@47542153</td></tr>
 <tr>
-<td title='com.logintest.LoginTest.testPasswordStrength()'><b>testPasswordStrength</b><br>Test class: com.logintest.LoginTest<br>Test method: Test Password Strength Validation (Registration Mode)</td>
+<td title='com.logintest.LoginTest.testEmailMaxLengthBoundary()'><b>testEmailMaxLengthBoundary</b><br>Test class: com.logintest.LoginTest</td>
 <td></td>
 <td>0</td>
-<td>com.logintest.LoginTest@65d6b83b</td></tr>
+<td>com.logintest.LoginTest@47542153</td></tr>
 <tr>
-<td title='com.logintest.LoginTest.testBoundaryLongInput()'><b>testBoundaryLongInput</b><br>Test class: com.logintest.LoginTest<br>Test method: Test field behavior with extremely long input</td>
+<td title='com.logintest.LoginTest.testSQLInjection()'><b>testSQLInjection</b><br>Test class: com.logintest.LoginTest</td>
 <td></td>
-<td>0</td>
-<td>com.logintest.LoginTest@65d6b83b</td></tr>
+<td>1</td>
+<td>com.logintest.LoginTest@47542153</td></tr>
 <tr>
-<td title='com.logintest.LoginTest.testValidLogin()'><b>testValidLogin</b><br>Test class: com.logintest.LoginTest<br>Test method: Test login with valid credentials</td>
+<td title='com.logintest.LoginTest.testValidLogin()'><b>testValidLogin</b><br>Test class: com.logintest.LoginTest</td>
 <td></td>
-<td>0</td>
-<td>com.logintest.LoginTest@65d6b83b</td></tr>
+<td>1</td>
+<td>com.logintest.LoginTest@47542153</td></tr>
 <tr>
-<td title='com.logintest.LoginTest.testEmptyFields()'><b>testEmptyFields</b><br>Test class: com.logintest.LoginTest<br>Test method: Test empty fields validation</td>
+<td title='com.logintest.LoginTest.testInvalidEmailFormat()'><b>testInvalidEmailFormat</b><br>Test class: com.logintest.LoginTest</td>
 <td></td>
 <td>0</td>
-<td>com.logintest.LoginTest@65d6b83b</td></tr>
+<td>com.logintest.LoginTest@47542153</td></tr>
 <tr>
-<td title='com.logintest.LoginTest.testSQLInjectionAttempt()'><b>testSQLInjectionAttempt</b><br>Test class: com.logintest.LoginTest<br>Test method: Test SQL Injection protection via PreparedStatements</td>
+<td title='com.logintest.LoginTest.testSpacesOnlyInput()'><b>testSpacesOnlyInput</b><br>Test class: com.logintest.LoginTest</td>
 <td></td>
-<td>0</td>
-<td>com.logintest.LoginTest@65d6b83b</td></tr>
+<td>1</td>
+<td>com.logintest.LoginTest@47542153</td></tr>
 <tr>
-<td title='com.logintest.LoginTest.testBoundaryMinPassword()'><b>testBoundaryMinPassword</b><br>Test class: com.logintest.LoginTest<br>Test method: Test password minimum length boundary</td>
+<td title='com.logintest.LoginTest.testEnterKeySubmission()'><b>testEnterKeySubmission</b><br>Test class: com.logintest.LoginTest</td>
+<td></td>
+<td>1</td>
+<td>com.logintest.LoginTest@47542153</td></tr>
+<tr>
+<td title='com.logintest.LoginTest.testPasswordMismatch()'><b>testPasswordMismatch</b><br>Test class: com.logintest.LoginTest</td>
+<td></td>
+<td>1</td>
+<td>com.logintest.LoginTest@47542153</td></tr>
+<tr>
+<td title='com.logintest.LoginTest.testInvalidLogin()'><b>testInvalidLogin</b><br>Test class: com.logintest.LoginTest</td>
+<td></td>
+<td>1</td>
+<td>com.logintest.LoginTest@47542153</td></tr>
+<tr>
+<td title='com.logintest.LoginTest.testPasswordMaxBoundary()'><b>testPasswordMaxBoundary</b><br>Test class: com.logintest.LoginTest</td>
 <td></td>
 <td>0</td>
-<td>com.logintest.LoginTest@65d6b83b</td></tr>
+<td>com.logintest.LoginTest@47542153</td></tr>
+<tr>
+<td title='com.logintest.LoginTest.testPasswordMinBoundary()'><b>testPasswordMinBoundary</b><br>Test class: com.logintest.LoginTest</td>
+<td></td>
+<td>0</td>
+<td>com.logintest.LoginTest@47542153</td></tr>
+<tr>
+<td title='com.logintest.LoginTest.testRegistrationSuccess()'><b>testRegistrationSuccess</b><br>Test class: com.logintest.LoginTest</td>
+<td></td>
+<td>1</td>
+<td>com.logintest.LoginTest@47542153</td></tr>
+<tr>
+<td title='com.logintest.LoginTest.testPasswordVisibilityToggle()'><b>testPasswordVisibilityToggle</b><br>Test class: com.logintest.LoginTest</td>
+<td></td>
+<td>0</td>
+<td>com.logintest.LoginTest@47542153</td></tr>
+<tr>
+<td title='com.logintest.LoginTest.testEmptyFields()'><b>testEmptyFields</b><br>Test class: com.logintest.LoginTest</td>
+<td></td>
+<td>1</td>
+<td>com.logintest.LoginTest@47542153</td></tr>
+<tr>
+<td title='com.logintest.LoginTest.testLeadingTrailingSpaces()'><b>testLeadingTrailingSpaces</b><br>Test class: com.logintest.LoginTest</td>
+<td></td>
+<td>1</td>
+<td>com.logintest.LoginTest@47542153</td></tr>
+<tr>
+<td title='com.logintest.LoginTest.testPasswordStrengthMeter()'><b>testPasswordStrengthMeter</b><br>Test class: com.logintest.LoginTest</td>
+<td></td>
+<td>0</td>
+<td>com.logintest.LoginTest@47542153</td></tr>
 </table><p>
 </body>
 </html>

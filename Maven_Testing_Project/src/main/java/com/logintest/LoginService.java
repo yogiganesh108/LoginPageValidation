@@ -41,14 +41,195 @@ public class LoginService {
             return new LoginResult(false, "Password is required");
         }
         
-        // Check credentials against database
-        boolean isValid = dbHelper.validateCredentials(email, password);
+        // Validate input format and security (pass original values to detect leading/trailing spaces)
+        String emailValidation = validateEmailFormat(email);
+        if (emailValidation != null) {
+            return new LoginResult(false, emailValidation);
+        }
+        
+        String passwordValidation = validatePasswordFormat(password);
+        if (passwordValidation != null) {
+            return new LoginResult(false, passwordValidation);
+        }
+        
+        // Check credentials against database (use trimmed values for lookup)
+        boolean isValid = dbHelper.validateCredentials(email.trim(), password.trim());
         
         if (isValid) {
             return new LoginResult(true, "Login Successful");
         } else {
             return new LoginResult(false, "Invalid credentials");
         }
+    }
+    
+    /**
+     * Validates email format and detects malicious patterns
+     * @param email - Email to validate
+     * @return Error message if invalid, null if valid
+     */
+    private String validateEmailFormat(String email) {
+        // Check for leading/trailing spaces (original value)
+        if (!email.equals(email.trim())) {
+            return "Invalid credentials";
+        }
+        
+        String trimmedEmail = email.trim();
+        
+        // Block spaces-only input
+        if (trimmedEmail.replaceAll("\\s+", "").isEmpty()) {
+            return "Invalid credentials";
+        }
+        
+        // SQL Injection patterns
+        if (containsSQLInjectionPatterns(trimmedEmail)) {
+            return "Invalid credentials";
+        }
+        
+        // XSS Injection patterns
+        if (containsXSSPatterns(trimmedEmail)) {
+            return "Invalid credentials";
+        }
+        
+        // HTML Injection patterns
+        if (containsHTMLPatterns(trimmedEmail)) {
+            return "Invalid credentials";
+        }
+        
+        // Unicode characters (allow standard ASCII emails)
+        if (!trimmedEmail.matches("[\\x00-\\x7F]+")) {
+            return "Invalid credentials";
+        }
+        
+        // Basic email format
+        if (!trimmedEmail.matches("[^\\s@]+@[^\\s@]+\\.[^\\s@]+")) {
+            return "Invalid credentials";
+        }
+        
+        return null;
+    }
+    
+    /**
+     * Validates password format and detects malicious patterns
+     * @param password - Password to validate
+     * @return Error message if invalid, null if valid
+     */
+    private String validatePasswordFormat(String password) {
+        // Check for leading/trailing spaces (original value)
+        if (!password.equals(password.trim())) {
+            return "Invalid credentials";
+        }
+        
+        String trimmedPassword = password.trim();
+        
+        // Block spaces-only input
+        if (trimmedPassword.replaceAll("\\s+", "").isEmpty()) {
+            return "Invalid credentials";
+        }
+        
+        // SQL Injection patterns
+        if (containsSQLInjectionPatterns(trimmedPassword)) {
+            return "Invalid credentials";
+        }
+        
+        // XSS Injection patterns
+        if (containsXSSPatterns(trimmedPassword)) {
+            return "Invalid credentials";
+        }
+        
+        // HTML Injection patterns
+        if (containsHTMLPatterns(trimmedPassword)) {
+            return "Invalid credentials";
+        }
+        
+        return null;
+    }
+    
+    /**
+     * Detects SQL injection patterns
+     */
+    private boolean containsSQLInjectionPatterns(String input) {
+        String lowerInput = input.toLowerCase();
+        String[] sqlPatterns = {
+            "' or '1'='1",
+            "\" or \"1\"=\"1",
+            "'; drop",
+            "' union",
+            "\" union",
+            "'; delete",
+            "' insert",
+            "' update",
+            "' select",
+            "-- ", 
+            "/*", 
+            "*/"
+        };
+        
+        for (String pattern : sqlPatterns) {
+            if (lowerInput.contains(pattern)) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    /**
+     * Detects XSS patterns
+     */
+    private boolean containsXSSPatterns(String input) {
+        String lowerInput = input.toLowerCase();
+        String[] xssPatterns = {
+            "<script",
+            "</script>",
+            "javascript:",
+            "onerror=",
+            "onload=",
+            "onclick=",
+            "onmouseover=",
+            "eval(",
+            "alert(",
+            "prompt(",
+            "confirm("
+        };
+        
+        for (String pattern : xssPatterns) {
+            if (lowerInput.contains(pattern)) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    /**
+     * Detects HTML injection patterns
+     */
+    private boolean containsHTMLPatterns(String input) {
+        String lowerInput = input.toLowerCase();
+        String[] htmlPatterns = {
+            "<b>",
+            "</b>",
+            "<i>",
+            "</i>",
+            "<p>",
+            "</p>",
+            "<div>",
+            "</div>",
+            "<span>",
+            "</span>",
+            "<font>",
+            "</font>",
+            "<strong>",
+            "</strong>"
+        };
+        
+        for (String pattern : htmlPatterns) {
+            if (lowerInput.contains(pattern)) {
+                return true;
+            }
+        }
+        
+        return false;
     }
     
     /**

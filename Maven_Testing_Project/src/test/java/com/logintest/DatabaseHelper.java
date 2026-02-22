@@ -9,16 +9,14 @@ import java.sql.SQLException;
 public class DatabaseHelper {
     
     // Database connection parameters
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/"; // Add your schema name
-    private static final String DB_SCHEMA = "LoginData"; // Replace with your schema name
-    private static final String DB_USER = "root"; // Replace with your MySQL username
-    private static final String DB_PASSWORD = "21030-Cm-108"; // Replace with your MySQL password
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/"; 
+    private static final String DB_SCHEMA = "LoginData"; 
+    private static final String DB_USER = "root"; 
+    private static final String DB_PASSWORD = "21030-Cm-108"; 
     
     private Connection connection;
     
-    /**
-     * Establishes a connection to the MySQL database
-     */
+    
     public void connect() throws SQLException {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -29,9 +27,7 @@ public class DatabaseHelper {
         }
     }
     
-    /**
-     * Closes the database connection
-     */
+    
     public void disconnect() {
         if (connection != null) {
             try {

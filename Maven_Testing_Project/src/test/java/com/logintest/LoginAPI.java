@@ -46,35 +46,33 @@ public class LoginAPI {
             return gson.toJson(response);
         });
         
-        // Login endpoint
+        
         post("/api/login", LoginAPI::handleLogin);
         
-        // Register endpoint (for testing)
+        
         post("/api/register", LoginAPI::handleRegister);
         
-        // Graceful shutdown
+        
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             loginService.cleanup();
             stop();
         }));
     }
     
-    /**
-     * Handles login requests
-     */
+    
     private static String handleLogin(Request req, Response res) {
         res.type("application/json");
         
         try {
-            // Parse request body
+            
             Map<String, String> requestData = gson.fromJson(req.body(), MAP_TYPE);
             String email = requestData.get("email");
             String password = requestData.get("password");
             
-            // Validate credentials
+            
             LoginService.LoginResult result = loginService.validateLogin(email, password);
             
-            // Build response
+            
             Map<String, Object> response = new HashMap<>();
             response.put("success", result.isSuccess());
             response.put("message", result.getMessage());
@@ -96,19 +94,17 @@ public class LoginAPI {
         }
     }
     
-    /**
-     * Handles registration requests (for testing purposes)
-     */
+    
     private static String handleRegister(Request req, Response res) {
         res.type("application/json");
         
         try {
-            // Parse request body
+            
             Map<String, String> requestData = gson.fromJson(req.body(), MAP_TYPE);
             String email = requestData.get("email");
             String password = requestData.get("password");
             
-            // Validate input
+            
             if (email == null || email.trim().isEmpty()) {
                 res.status(400);
                 Map<String, Object> errorResponse = new HashMap<>();
@@ -125,7 +121,7 @@ public class LoginAPI {
                 return gson.toJson(errorResponse);
             }
             
-            // Check if user already exists
+            
             if (loginService.doesUserExist(email)) {
                 res.status(409);
                 Map<String, Object> errorResponse = new HashMap<>();
@@ -134,7 +130,7 @@ public class LoginAPI {
                 return gson.toJson(errorResponse);
             }
             
-            // Register user
+            
             boolean registered = loginService.registerUser(email, password);
             
             Map<String, Object> response = new HashMap<>();
@@ -159,9 +155,7 @@ public class LoginAPI {
         }
     }
     
-    /**
-     * Enables CORS for cross-origin requests
-     */
+    
     private static void enableCORS() {
         options("/*", (request, response) -> {
             String accessControlRequestHeaders = request.headers("Access-Control-Request-Headers");
